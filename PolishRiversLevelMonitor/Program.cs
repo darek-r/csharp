@@ -20,9 +20,11 @@ namespace WinFormsApp1
 
         public static bool downloadComplete;
 
+        public static string downloadException = "";
+
         public static async Task DownloadData()
         {
-
+            downloadException = "OK.";
 
             string jsonStringFromWeb = "[]";
             try
@@ -31,7 +33,7 @@ namespace WinFormsApp1
             }
             catch (Exception ex)
             {
-                
+                downloadException = ex.Message;
             }
 
             riversStatus = JsonSerializer.Deserialize<List<StationsData>>(jsonStringFromWeb);

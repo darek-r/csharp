@@ -25,11 +25,14 @@ namespace WinFormsApp1
                     if (stationStatus.rzeka.Equals(comboBox1.GetItemText(comboBox1.SelectedItem)))
                         Program.stationsStatus.Add(stationStatus);
 
+
+
                 this.comboBox2.Items.Clear();
                 if (Program.stationsStatus is not null)
                 {
                     // Add first item as operation sugestion for user
                     this.comboBox2.Items.Add("-- Select Station --");
+                    this.comboBox2.SelectedItem = this.comboBox2.Items[0];
 
                     // Sort data by river name
                     Program.stationsStatus = Program.stationsStatus.OrderBy(x => x.stacja).ToList();
@@ -42,7 +45,11 @@ namespace WinFormsApp1
 
                 }
 
-                comboBox2.SelectedItem = 0;
+                this.textBox1.Text = "";
+                this.textBox2.Text = "";
+                this.textBox3.Text = "";
+
+
             }
         }
 
@@ -62,6 +69,7 @@ namespace WinFormsApp1
                 {
                     // Add first item as operation sugestion for user
                     this.comboBox1.Items.Add("-- Select River --");
+                    this.comboBox1.SelectedItem = this.comboBox1.Items[0];
 
                     // Sort data by river name
                     Program.riversStatus = Program.riversStatus.OrderBy(x => x.rzeka).ToList();
@@ -98,6 +106,7 @@ namespace WinFormsApp1
                 {
                     // Add first item as operation sugestion for user
                     this.comboBox1.Items.Add("-- Select River --");
+                    this.comboBox1.SelectedItem = this.comboBox1.Items[0];
 
                     // Sort data by river name
                     Program.riversStatus = Program.riversStatus.OrderBy(x => x.rzeka).ToList();
@@ -114,6 +123,27 @@ namespace WinFormsApp1
             {
                 this.toolStripStatusLabel1.Text = "Data unavailable. Check internet connection.";
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox2.SelectedIndex == 0) this.textBox1.Text = "";
+
+            if (Program.stationsStatus is not null
+                && this.comboBox2.SelectedIndex > 0
+                && this.comboBox2.SelectedIndex-1 < Program.stationsStatus.Count
+                && Program.stationsStatus[this.comboBox2.SelectedIndex-1] is not null)
+            {
+                this.textBox1.Text = Program.stationsStatus[this.comboBox2.SelectedIndex - 1].stan_wody == null ? "-" : Program.stationsStatus[this.comboBox2.SelectedIndex - 1].stan_wody + " cm";
+                this.textBox2.Text = Program.stationsStatus[this.comboBox2.SelectedIndex - 1].temperatura_wody == null ? "-" : Program.stationsStatus[this.comboBox2.SelectedIndex - 1].temperatura_wody;
+                this.textBox3.Text = Program.stationsStatus[this.comboBox2.SelectedIndex - 1].stan_wody_data_pomiaru == null ? "-" : Program.stationsStatus[this.comboBox2.SelectedIndex - 1].stan_wody_data_pomiaru;
+            }
+                
         }
     }
 }
