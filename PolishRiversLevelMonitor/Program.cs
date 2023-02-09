@@ -14,12 +14,16 @@ namespace WinFormsApp1
     {
         static readonly HttpClient client = new HttpClient();
 
+        // Contains all data from web
         public static List<StationsData>? riversStatus;
 
+        // Contains data of one selected river
         public static List<StationsData>? stationsStatus;
 
+        // Indicates download status
         public static bool downloadComplete;
 
+        // For future purpose
         public static string downloadException = "";
 
         public static async Task DownloadData()

@@ -10,6 +10,7 @@ namespace WinFormsApp1
 
         }
 
+        // Select River comboBox
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Program.riversStatus is not null)
@@ -89,12 +90,12 @@ namespace WinFormsApp1
         }
 
         
-
+        // Refresh Data button
         private async void button3_Click(object sender, EventArgs e)
         {
             this.toolStripStatusLabel1.Text = "Data downloading...";
 
-            // Download data from internet
+            // Re-Download data from internet
             await Program.DownloadData();
 
             if (Program.downloadComplete)
@@ -125,6 +126,7 @@ namespace WinFormsApp1
             }
         }
 
+        // Exit button
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
