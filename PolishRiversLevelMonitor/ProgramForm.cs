@@ -61,6 +61,9 @@ namespace WinFormsApp1
             // Download data from internet
             await Program.DownloadData();
 
+            // Read data from file
+            Program.ReadFromFileData();
+
             if (Program.downloadComplete)
             {
                 this.toolStripStatusLabel1.Text = "OK. Data downloaded.";
@@ -137,13 +140,35 @@ namespace WinFormsApp1
             if (comboBox2.SelectedIndex == 0) this.textBox1.Text = "";
 
             if (Program.stationsStatus is not null
+                && Program.stationsWarningData is not null
                 && this.comboBox2.SelectedIndex > 0
                 && this.comboBox2.SelectedIndex-1 < Program.stationsStatus.Count
                 && Program.stationsStatus[this.comboBox2.SelectedIndex-1] is not null)
             {
-                this.textBox1.Text = Program.stationsStatus[this.comboBox2.SelectedIndex - 1].stan_wody == null ? "-" : Program.stationsStatus[this.comboBox2.SelectedIndex - 1].stan_wody + " cm";
-                this.textBox2.Text = Program.stationsStatus[this.comboBox2.SelectedIndex - 1].temperatura_wody == null ? "-" : Program.stationsStatus[this.comboBox2.SelectedIndex - 1].temperatura_wody;
-                this.textBox3.Text = Program.stationsStatus[this.comboBox2.SelectedIndex - 1].stan_wody_data_pomiaru == null ? "-" : Program.stationsStatus[this.comboBox2.SelectedIndex - 1].stan_wody_data_pomiaru;
+                // Water height
+                this.textBox1.Text = Program.stationsStatus[this.comboBox2.SelectedIndex - 1].stan_wody == null ? " - cm" : Program.stationsStatus[this.comboBox2.SelectedIndex - 1].stan_wody + " cm";
+                // Water temperature
+                this.textBox2.Text = Program.stationsStatus[this.comboBox2.SelectedIndex - 1].temperatura_wody == null ? " - C" : Program.stationsStatus[this.comboBox2.SelectedIndex - 1].temperatura_wody + " C";
+                // Date
+                this.textBox3.Text = Program.stationsStatus[this.comboBox2.SelectedIndex - 1].stan_wody_data_pomiaru == null ? " - " : Program.stationsStatus[this.comboBox2.SelectedIndex - 1].stan_wody_data_pomiaru;
+                
+                // Monitor and Danger stages
+                string tx1 = "";
+                string tx2 = "";
+                foreach (StationsWarningData sdw in Program.stationsWarningData)
+                {
+                    if(sdw.id_stacji is not null && sdw.id_stacji == Program.stationsStatus[this.comboBox2.SelectedIndex - 1].id_stacji)
+                    {
+                        tx1 = sdw.warning is null ? "" : sdw.warning + " cm";
+                        tx2 = sdw.alarm is null ? "" : sdw.alarm + " cm";
+                        break;
+                    }
+                }
+
+                if (tx1 == "nul cm") tx1 = "";
+                if (tx2 == "nul cm") tx2 = "";
+                this.textBox4.Text = tx1;
+                this.textBox5.Text = tx2;
             }
                 
         }

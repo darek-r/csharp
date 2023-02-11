@@ -20,8 +20,14 @@ namespace WinFormsApp1
         // Contains data of one selected river
         public static List<StationsData>? stationsStatus;
 
+        // Contains local data like alarm and warning levels
+        public static List<StationsWarningData>? stationsWarningData;
+
         // Indicates download status
         public static bool downloadComplete;
+
+        // Indicates read from file status
+        public static bool readComplete;
 
         // For future purpose
         public static string downloadException = "";
@@ -45,7 +51,40 @@ namespace WinFormsApp1
             downloadComplete = true;
         }
 
+        public static void ReadFromFileData()
+        {
+            readComplete = false;
 
+            bool fileOK = true;
+            // Read additional data from file
+            string jsonStringFromFile = "[]";
+            try
+            {
+                jsonStringFromFile = System.IO.File.ReadAllText(@"stations_alarm_warning.json");
+            }
+            catch (FileNotFoundException)
+            {
+                fileOK = false;
+            }
+            catch (Exception ex)
+            {
+                fileOK = false;
+            }
+
+            if (fileOK)
+            {
+                try
+                {
+                    stationsWarningData = JsonSerializer.Deserialize<List<StationsWarningData>>(jsonStringFromFile);
+                }
+                catch (Exception ex)
+                {
+                    fileOK = false;
+                }
+                if (fileOK)
+                    readComplete = true;
+            }
+        }
 
         /// <summary>
         ///  The main entry point for the application.
@@ -56,6 +95,7 @@ namespace WinFormsApp1
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             downloadComplete = false;
+            readComplete = false;
             ApplicationConfiguration.Initialize();
             Application.Run(new ProgramForm());
         }

@@ -43,6 +43,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,7 +66,7 @@
             this.toolStripStatusLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 297);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(427, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(685, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -172,17 +177,64 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(74, 27);
+            this.label6.Location = new System.Drawing.Point(37, 9);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(259, 15);
             this.label6.TabIndex = 13;
             this.label6.Text = "This app shows current data from IMGW Poland";
             // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(378, 129);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(124, 23);
+            this.textBox4.TabIndex = 14;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(508, 129);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(111, 23);
+            this.textBox5.TabIndex = 15;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(378, 111);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(121, 15);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Monitor stage height:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(508, 111);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(116, 15);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "Danger stage height:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(37, 24);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(515, 15);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "You have to accept terms and conditions on https://danepubliczne.imgw.pl/ site to" +
+    " use this tool.";
+            // 
             // ProgramForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(427, 319);
+            this.ClientSize = new System.Drawing.Size(685, 319);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label5);
@@ -197,8 +249,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.comboBox1);
-            this.MaximumSize = new System.Drawing.Size(443, 358);
-            this.MinimumSize = new System.Drawing.Size(443, 358);
+            this.MaximumSize = new System.Drawing.Size(1000, 358);
+            this.MinimumSize = new System.Drawing.Size(608, 358);
             this.Name = "ProgramForm";
             this.Text = "Polish Rivers Level Status";
             this.Load += new System.EventHandler(this.ProgramForm_Load);
@@ -226,5 +278,10 @@
         private Label label5;
         private TextBox textBox3;
         private Label label6;
+        private TextBox textBox4;
+        private TextBox textBox5;
+        private Label label7;
+        private Label label8;
+        private Label label9;
     }
 }
